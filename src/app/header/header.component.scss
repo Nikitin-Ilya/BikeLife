@@ -1,0 +1,104 @@
+$red: #D62828;
+$blue: #003049;
+$orange: #F77F00;
+$grey: #777777;
+$white: #fff;
+$black: #000;
+
+*:not(.fa-solid){
+  font-family: 'Montserrat', sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+a,a:visited{text-decoration: none; color: #000}
+a:hover{text-decoration: none;}
+
+html, body{
+	height: 100%;
+}
+
+.container{
+  max-width: 1230px;
+  padding: 0 20px;
+	margin: 0 auto;
+}
+
+.header{
+  margin: 20px 0 20px 0;
+  display: flex;
+  color: #291c15;
+  &__logo{
+    a{
+      color: #291c15;
+      font-family: 'Oleo Script Swash Caps', cursive;
+      font-size: 36px;
+    }
+		margin-right: auto;
+  }
+
+  &__right-part{
+    display: flex;
+    justify-content: space-between;
+  }
+
+  &__pages{
+    display: flex;
+    align-items: center;
+    font-size: 20px;
+    a{
+      margin-left: 30px;
+      color: #291c15;
+    }
+    a, i{
+      transition: all 0.2s ease-out;
+    }
+    a:hover, i:hover{
+      transform: scale(1.1);
+    }
+  }
+
+  &__auth{
+    display: flex;
+    margin-left: 40px;
+
+    h5{
+      font-size: 16px;
+      font-weight: 400;
+    }
+
+    .header__auth-button{
+      border-radius:20px 0 0 20px;
+      padding: 5px 10px;
+      transition: all 0.2s ease-out;
+      &:hover{
+        background: $white;
+      }
+    }
+
+    .signin{
+      padding-right: 20px;
+      color: $white;
+      background: $blue;
+      border: 2px $blue solid;
+      &:hover{
+        color: $blue;
+      }
+    }
+
+    .signup{
+      margin-left: -15px;
+      color: $white;
+      background: $red;
+      border-radius: 20px;
+      border: 2px $red solid;
+      &:hover{
+        color: $red;
+      }
+    }
+  }
+
+
+
+}

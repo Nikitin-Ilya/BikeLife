@@ -1,0 +1,68 @@
+<div class="container">
+  <div class="title">
+    <h1>Contact us</h1>
+    <div class="title__underline"></div>
+  </div>
+
+
+  <div class="contact">
+    <div class="contact__info">
+
+      <div class="item">
+        <div class="item__logo">
+          <i class="fa-solid fa-location-dot"></i>
+        </div>
+        <div class="item__title">Address</div>
+        <div class="item__info">
+          <p>2 Glinka street, Dnipro, Dnipropetrovsk region, 49000</p>
+        </div>
+      </div>
+
+      <div class="item">
+        <div class="item__logo">
+          <i class="fa-solid fa-envelope"></i>
+        </div>
+        <div class="item__title">Email</div>
+        <div class="item__info">
+          <p class="email">example@company.com</p>
+          <p class="email">support@company.com</p>
+        </div>
+      </div>
+
+      <div class="item">
+        <div class="item__logo">
+          <i class="fa-solid fa-phone"></i>
+        </div>
+        <div class="item__title">Call us</div>
+        <div class="item__info">
+          <p>+380 (66) 190 88 52</p>
+          <p>+380 (97) 384 04 52</p>
+        </div>
+      </div>
+
+      <div class="item">
+        <div class="item__title">Contact us</div>
+        <div class="item__info">
+          <p>Contact us for a quote. Help or to join the team</p>
+          <div class="item__social-net">
+            <div class="item__link">
+              <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
+            </div>
+            <div class="item__link">
+              <a href="#"><i class="fa-brands fa-twitter"></i></a>
+            </div>
+            <div class="item__link">
+              <a href="#"><i class="fa-brands fa-instagram"></i></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="contact__map">
+      <google-map [zoom]="12" [center]="center">
+        <map-marker [position]="marker"></map-marker>
+      </google-map>
+    </div>
+  </div>
+</div>

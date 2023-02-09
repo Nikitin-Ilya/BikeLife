@@ -1,0 +1,23 @@
+<div class="container">
+  <header class="header">
+    <div class="header__logo">
+      <a [routerLink]="['/']">Online store</a>
+    </div>
+
+    <div class="header__right-part">
+      <div class="header__pages">
+        <a [routerLink]="['/']">Home</a>
+        <a [routerLink]="['/contact']">Contact</a>
+      </div>
+
+      <div class="header__auth">
+        <a [routerLink]="['/']">
+          <div class="header__auth-button signin"><h5>Sign in</h5></div>
+        </a>
+        <a [routerLink]="['/']">
+          <div class="header__auth-button signup"><h5>Sign up</h5></div>
+        </a>
+      </div>
+    </div>
+  </header>
+</div>

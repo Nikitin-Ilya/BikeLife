@@ -1,0 +1,96 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap');
+
+$grey: #BEBFC1;
+$red: #D62828;
+
+body{
+  font-family: 'Montserrat', sans-serif;
+}
+
+.container{
+  max-width: 1230px;
+  padding: 0 20px;
+	margin: 0 auto;
+}
+
+.title {
+  text-align: center;
+  margin: 50px 0;
+  h1{
+    font-weight: 700;
+    font-size: 30px;
+    text-transform: uppercase;
+  }
+
+  .title__underline {
+    margin: 0 auto;
+    margin-top: 20px;
+    width: 70px;
+    height: 5px;
+    background-color: $red;
+  }
+}
+
+.contact {
+  display: flex;
+  justify-content: center;
+  color: $grey;
+
+  .contact__info {
+    width: 500px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(100px, 250px));
+    background-color: #282B31;
+    .item {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      .item__logo {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 80px;
+        height: 80px;
+        border: 2px solid $grey;
+        border-radius: 50%;
+        font-size: 30px;
+      }
+      .item__title {
+        margin: 20px 0;
+        text-transform: uppercase;
+        font-size: 24px;
+        font-weight: 400;
+      }
+      .item__info {
+        color: rgb(227, 227, 227);
+        max-width: 190px;
+
+        p{
+          margin: 0;
+        }
+
+        .email{
+          text-decoration: underline;
+        }
+
+        .item__social-net {
+          margin: 20px auto 0 auto;
+          width: 100px;
+          display: flex;
+          justify-content: space-between;
+          font-size: 22px;
+          a{
+            color: white;
+          }
+          .item__link {
+          }
+        }
+      }
+    }
+  }
+
+  .contact__map {
+  }
+}
