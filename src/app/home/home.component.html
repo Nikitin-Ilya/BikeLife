@@ -41,7 +41,6 @@
 
     <div class="products-list">
       <div class="item red-item" *ngFor="let item of items" [ngClass]="{'red-item': getColor(item.offer) === 'red', 'orange-item': getColor(item.offer) === 'orange', 'yellow-item': getColor(item.offer) === 'yellow'}">
-        <!--[ngStyle]="{'border-color':getColor(item.offer)}"-->
         <div class="item__container">
           <div class="item__content">
             <div class="item__off" *ngIf="item.offer">
