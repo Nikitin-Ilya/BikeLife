@@ -13,7 +13,8 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-import { GoogleMapsModule } from '@angular/google-maps'
+import { GoogleMapsModule } from '@angular/google-maps';
+import { HttpClientModule, HttpClientJsonpModule } from '@angular/common/http';
 
 const appRoutes: Routes = [
   { path: '', component: HomeComponent},
@@ -37,6 +38,9 @@ const appRoutes: Routes = [
     RouterModule.forRoot(appRoutes),
     NoopAnimationsModule,
     GoogleMapsModule,
+    HttpClientModule,
+    HttpClientJsonpModule,
+
   ],
   providers: [],
   bootstrap: [AppComponent]
