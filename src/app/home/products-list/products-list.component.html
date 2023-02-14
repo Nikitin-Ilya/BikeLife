@@ -1,0 +1,109 @@
+<div class="products-list">
+
+  <div class="item" *ngFor="let item of products"
+    [ngClass]="{'red-item': item.discount! >= 70,
+              'orange-item': item.discount! >= 50 && item.discount! < 70,
+              'yellow-item': item.discount! > 0 && item.discount! < 50,
+              'main-item': item.main}">
+
+    <div class="item__main" *ngIf="item.main">
+      <div class="item__off" *ngIf="item.discount > 0">
+        <p>{{item.discount}}%</p>
+        <p>off</p>
+      </div>
+
+      <div class="item__image">
+        <img class="item__img" src="{{item.imgUrl}}" alt="Error!">
+      </div>
+
+      <div class="item__container price-shop">
+        <div class="item__price">
+          <div class="item__off-price">
+            {{item.price - (item.price * (item.discount/100)) | currency:'EUR':'symbol':'1.0'}}
+          </div>
+          <div class="item__real-price" *ngIf="item.discount">
+            {{item.price | currency:'EUR':'symbol':'1.0'}}
+          </div>
+        </div>
+
+        <div class="item__shop">
+          <p>{{item.shop}}</p>
+        </div>
+      </div>
+
+      <div class="item__content">
+        <div class="item__name">
+          {{item.name}}
+        </div>
+
+        <div class="item__desc">
+          {{ (item.description.length>35)? (item.description | slice:0:180)+'...':(item.description) }}
+        </div>
+      </div>
+
+      <div class="item__addition" *ngIf="item.shipping || item.new || item.discountUntil">
+        <div class="addition" *ngIf="item.shipping">
+          {{item.shipping}}
+        </div>
+        <div class="addition" *ngIf="item.new">
+          New
+        </div>
+        <div class="addition" *ngIf="item.discountUntil">
+          {{item.discountUntil | date}}
+        </div>
+      </div>
+    </div>
+
+    <div class="item__general" *ngIf="!item.main">
+      <div class="item__container">
+
+        <div class="item__content">
+          <div class="item__off" *ngIf="item.discount > 0">
+            <p>{{item.discount}}%</p>
+            <p>off</p>
+          </div>
+
+          <div class="item__name">
+            {{item.name}}
+          </div>
+          <div class="item__desc">
+            {{ (item.description.length>35)? (item.description | slice:0:35)+'...':(item.description) }}
+          </div>
+        </div>
+
+        <div class="item__image">
+          <img class="item__img" src="{{item.imgUrl}}" alt="Error!">
+        </div>
+      </div>
+
+      <div class="item__container">
+
+        <div class="item__price">
+          <div class="item__off-price">
+            {{item.price - (item.price * (item.discount/100)) | currency:'EUR':'symbol':'1.0'}}
+          </div>
+          <div class="item__real-price" *ngIf="item.discount">
+            {{item.price | currency:'EUR':'symbol':'1.0'}}
+          </div>
+        </div>
+        <div class="item__shop">
+          <p>Amazon</p>
+        </div>
+      </div>
+
+      <div class="item__addition" *ngIf="item.shipping || item.new || item.discountUntil">
+
+        <div class="addition" *ngIf="item.shipping">
+          {{item.shipping}}
+        </div>
+        <div class="addition" *ngIf="item.new">
+          New
+        </div>
+        <div class="addition" *ngIf="item.discountUntil">
+          {{item.discountUntil | date}}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
