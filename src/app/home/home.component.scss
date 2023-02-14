@@ -1,12 +1,3 @@
-$red: #D62828;
-$blue: #003049;
-$orange: #F77F00;
-$yellow: #FFBE18;
-$grey: #777777;
-$white: #fff;
-$black: #000;
-$gray-text: #878787;
-
 .banner{
   text-align: center;
   background-color: #F1F5F8;
@@ -31,46 +22,4 @@ $gray-text: #878787;
   display: flex;
   margin: 50px 0 100px 0;
   color: rgb(73, 60, 48);
-}
-
-.sidebar{
-  color: #291c15;
-  &__search{
-    background-color: #F1F5F8;
-    padding: 10px 15px;
-    border-radius: 5px;
-  }
-
-  p{
-    font-weight: 600;
-  }
-
-  &__filter{
-    margin-top: 30px;
-    li{
-      margin: 10px 0 0 10px;
-      .sidebar__brand{
-        position: absolute;
-        z-index: -1;
-        opacity: 0;
-      }
-      input:checked + label{
-        color: #0175FF;
-      }
-    }
-  }
-
-  &__price{
-    margin-top: 20px;
-    display: flex;
-    flex-direction: column;
-  }
-
-  &__price > *{
-    margin-top: 10px;
-  }
-}
-
-app-products-list{
-  width: 100%;
 }

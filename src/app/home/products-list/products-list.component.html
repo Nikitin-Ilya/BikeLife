@@ -6,10 +6,11 @@
               'yellow-item': item.discount! > 0 && item.discount! < 50,
               'main-item': item.main}">
 
+    <!--------------Fist/main product---------------->
     <div class="item__main" *ngIf="item.main">
       <div class="item__off" *ngIf="item.discount > 0">
-        <p>{{item.discount}}%</p>
-        <p>off</p>
+        <p class="item__offer-count">{{item.discount}}%</p>
+        <p class="item__offer-text">off</p>
       </div>
 
       <div class="item__image">
@@ -54,13 +55,14 @@
       </div>
     </div>
 
+    <!--------------All products---------------->
     <div class="item__general" *ngIf="!item.main">
       <div class="item__container">
 
         <div class="item__content">
           <div class="item__off" *ngIf="item.discount > 0">
-            <p>{{item.discount}}%</p>
-            <p>off</p>
+            <p class="item__offer-count">{{item.discount}}%</p>
+            <p class="item__offer-text">off</p>
           </div>
 
           <div class="item__name">
@@ -104,6 +106,7 @@
         </div>
       </div>
     </div>
+
   </div>
 </div>
 

@@ -18,7 +18,6 @@ hr{
 .products-list{
   margin-bottom: 100px;
   width: 100%;
-  padding-left: 40px;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   align-items: start;
@@ -41,44 +40,6 @@ hr{
     display: flex;
     justify-content: space-between;
   }
-
-  .item__content {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-
-    .item__name{
-      margin: 10px 0 10px 0;
-      font-weight: 600;
-      color: $grey;
-    }
-  }
-
-  .item__image {
-    display: flex;
-    align-items: center;
-    img{
-      max-width: 150px;
-    }
-  }
-
-  .item__addition {
-    margin-top: 10px;
-    padding-top: 5px;
-    display: flex;
-    justify-content: space-between;
-    border-top: 1px dashed $grey;
-
-    .addition{
-      text-align: center;
-      width: 100%;
-    }
-
-    .addition:not(:nth-child(1)) {
-      border-left: 1px solid $grey;
-    }
-  }
 }
 
 .main-item:nth-child(1){
@@ -100,7 +61,7 @@ hr{
   }
   .item__image {
     justify-content: center;
-    img{
+    .item__img{
       max-width: 300px;
     }
   }
@@ -111,9 +72,17 @@ hr{
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+
+  .item__image {
+    display: flex;
+    align-items: center;
+    .item__img{
+      max-width: 150px;
+    }
+  }
 }
 
-.item__off {
+.item__off{
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -122,13 +91,25 @@ hr{
   height: 50px;
   background-color: $gray-text;
   border-radius: 50%;
-  p{
+  color: $white;
+  .item__offer-count{
     font-weight: 300;
-    color: $white;
-    margin: 0;
   }
-  p:nth-child(2){
+  .item__offer-text{
     font-weight: 600;
+  }
+}
+
+.item__content {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  .item__name{
+    margin: 10px 0 10px 0;
+    font-weight: 600;
+    color: $grey;
   }
 }
 
@@ -156,11 +137,28 @@ hr{
     transform: rotate(12deg);
   }
 }
+
+.item__addition {
+  margin-top: 10px;
+  padding-top: 5px;
+  display: flex;
+  justify-content: space-between;
+  border-top: 1px dashed $grey;
+
+  .addition{
+    text-align: center;
+    width: 100%;
+  }
+
+  .addition:not(:nth-child(1)) {
+    border-left: 1px solid $grey;
+  }
+}
+
 .item__shop{
   font-size: 14px;
   color: $gray-text;
 }
-
 
 .red-item{
   border: 1px solid $red;
