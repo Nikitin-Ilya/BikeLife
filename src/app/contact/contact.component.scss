@@ -16,7 +16,7 @@ body{
 .title {
   text-align: center;
   margin: 50px 0;
-  h1{
+  .title__text{
     font-weight: 700;
     font-size: 30px;
     text-transform: uppercase;
@@ -84,13 +84,8 @@ body{
           a{
             color: white;
           }
-          .item__link {
-          }
         }
       }
     }
-  }
-
-  .contact__map {
   }
 }

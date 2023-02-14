@@ -1,78 +1,11 @@
 <div class="banner">
-    <h1>Range of products</h1>
+    <h1 class="banner__title">Range of products</h1>
 </div>
 
 <div class="container">
   <main class="content">
-    <div class="sidebar">
-      <input type="search" class="sidebar__search" id="sidebar__search" placeholder="Search..."/>
 
-      <ul class="sidebar__filter">
-        <p>Brand:</p>
-
-        <li>
-          <input type="radio" class="sidebar__brand" id="All" name="brand" value="All" onchange="filterProducts()">
-          <label for="All">All</label>
-        </li>
-        <li>
-          <input type="radio" class="sidebar__brand" id="Gucci" name="brand" value="Gucci" onchange="filterProducts()">
-          <label for="Gucci">Gucci</label>
-        </li>
-        <li>
-          <input type="radio" class="sidebar__brand" id="Prada" name="brand" value="Prada" onchange="filterProducts()">
-          <label for="Prada">Prada</label>
-        </li>
-        <li>
-          <input type="radio" class="sidebar__brand" id="LouisVuitton" name="brand" value="Louis Vuitton" onchange="filterProducts()">
-          <label for="LouisVuitton">Louis Vuitton</label>
-        </li>
-        <li>
-          <input type="radio" class="sidebar__brand" id="Dior" name="brand" value="Dior" onchange="filterProducts()">
-          <label for="Dior">Dior</label>
-        </li>
-      </ul>
-
-      <div class="sidebar__price">
-        <p>Max price</p>
-        <input type="range" id="price" name="price" min="10" max="9000" value="9000" onchange="filterProducts()" oninput="this.nextElementSibling.value='Value: $' + this.value">
-        <output id="price-value" for="price" name="maxPrice">Value: $9000</output>
-      </div>
-    </div>
-
-    <div class="products-list">
-      <div class="item red-item" *ngFor="let item of items" [ngClass]="{'red-item': getColor(item.offer) === 'red', 'orange-item': getColor(item.offer) === 'orange', 'yellow-item': getColor(item.offer) === 'yellow'}">
-        <div class="item__container">
-          <div class="item__content">
-            <div class="item__off" *ngIf="item.offer">
-              <p>{{item.offer}}%</p>
-              <p>off</p>
-            </div>
-            <div class="item__desc">
-              {{item.description}}
-            </div>
-            <div class="item__price-offer price" *ngIf="item.offer">
-              <div class="item__off-price">
-                ${{item.offPrice}}
-              </div>
-              <div class="item__real-price">
-                ${{item.realPrice}}
-              </div>
-            </div>
-            <div class="item__price price" *ngIf="!item.offer">
-                ${{item.realPrice}}
-            </div>
-          </div>
-          <div class="item__image">
-            <img src="../../assets/img/{{item.image}}" alt="Error!">
-          </div>
-        </div>
-        <div class="item__addition" *ngIf="item.addition">
-          <div class="addition" *ngFor="let addition of item.addition">
-            {{addition}}
-          </div>
-        </div>
-      </div>
-    </div>
+    <app-products-list></app-products-list>
 
   </main>
 </div>

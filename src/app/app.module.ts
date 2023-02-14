@@ -15,6 +15,7 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { GoogleMapsModule } from '@angular/google-maps';
 import { HttpClientModule, HttpClientJsonpModule } from '@angular/common/http';
+import { ProductsListComponent } from './home/products-list/products-list.component';
 
 const appRoutes: Routes = [
   { path: '', component: HomeComponent},
@@ -26,7 +27,8 @@ const appRoutes: Routes = [
     AppComponent,
     HomeComponent,
     HeaderComponent,
-    ContactComponent
+    ContactComponent,
+    ProductsListComponent
   ],
   imports: [
     BrowserModule,
