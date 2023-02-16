@@ -13,8 +13,16 @@ export class ProductsListComponent  implements OnInit{
   constructor(private dataService: DataService){}
 
   ngOnInit(): void {
-    this.dataService.getProducts().subscribe(response=>{
-      this.products=response
+    this.dataService.getProducts().subscribe(response=> {
+      this.products=response.sort((el, nextEl) => {
+        if (el.discount > nextEl.discount) {
+          return -1;
+        }
+        if (el.discount < nextEl.discount) {
+          return 1;
+        }
+        return 0;
+      });
     })
   }
 }
