@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable, throwError, from, of } from 'rxjs';
+import { Observable, map } from 'rxjs';
 import { data } from '../../assets/data';
 
 interface IReview {
@@ -35,5 +35,10 @@ export class DataService {
 
   getProducts():Observable<IProduct[]>{
     return this.http.get<IProduct[]>('../../assets/data.json');
+  }
+
+  getProduct(id: number):Observable<IProduct>{
+    return this.http.get<IProduct[]>('../../assets/data.json')
+      .pipe(map(products => products.find((r) => r.id == id)!));
   }
 }
