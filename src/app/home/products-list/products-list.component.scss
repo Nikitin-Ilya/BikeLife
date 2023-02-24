@@ -60,9 +60,10 @@ hr{
     border-bottom: 1px dashed $gray-text;
   }
   .item__image {
-    justify-content: center;
     .item__img{
+      display: block;
       max-width: 300px;
+      margin: 0 auto;
     }
   }
 }

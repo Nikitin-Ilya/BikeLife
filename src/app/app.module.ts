@@ -22,14 +22,6 @@ import {MatSelectModule} from '@angular/material/select';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {MatInputModule} from '@angular/material/input';
 
-
-const appRoutes: Routes = [
-  { path: '', component: HomeComponent},
-  { path: 'contact', component: ContactComponent},
-  { path: ':id', component: ProductDetailsComponent }
-
-];
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -37,7 +29,7 @@ const appRoutes: Routes = [
     HeaderComponent,
     ContactComponent,
     ProductsListComponent,
-    ProductDetailsComponent
+    ProductDetailsComponent,
   ],
   imports: [
     BrowserModule,
@@ -46,8 +38,6 @@ const appRoutes: Routes = [
     MatIconModule,
     MatGridListModule,
     MatSidenavModule,
-    RouterModule.forRoot(appRoutes),
-    //RouterModule.forChild(productRoutes),
     NoopAnimationsModule,
     GoogleMapsModule,
     HttpClientModule,

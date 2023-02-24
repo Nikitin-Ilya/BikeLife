@@ -5,7 +5,7 @@
               'orange-item': item.discount! >= 50 && item.discount! < 70,
               'yellow-item': item.discount! > 0 && item.discount! < 50,
               'main-item': item.main}"
-    [routerLink]="['/' + item?.id]">
+    [routerLink]="['product/' + item?.id]">
 
     <!--------------Fist/main product---------------->
     <div class="item__main" *ngIf="item.main">

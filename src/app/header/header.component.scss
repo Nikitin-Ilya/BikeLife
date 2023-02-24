@@ -99,6 +99,13 @@ html, body{
     }
   }
 
+  &__cart{
+    display: flex;
+    align-items: center;
+    margin-left: 40px;
+    font-size: 22px;
+  }
+
 
 
 }
