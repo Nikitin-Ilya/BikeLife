@@ -1,1 +1,24 @@
-<p>contact-form works!</p>
+<form #contactForm="ngForm" (ngSubmit)="onSubmit(contactForm)" class="contact-form">
+
+  <mat-form-field class="example-full-width">
+    <mat-label>Enter your name</mat-label>
+    <input matInput type="text" class="contact-form__input" [ngModel]="name" name="name" required>
+  </mat-form-field>
+
+  <mat-form-field class="example-full-width">
+    <mat-label>Enter your surename</mat-label>
+    <input matInput type="text" class="contact-form__input" [ngModel]="surname" name="surname" required>
+  </mat-form-field>
+
+  <mat-form-field class="example-full-width">
+    <mat-label>Enter your email</mat-label>
+    <input matInput type="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" class="contact-form__input" [ngModel]="email" name="email" required>
+  </mat-form-field>
+
+  <mat-form-field class="example-full-width">
+    <mat-label>Describe your question</mat-label>
+    <textarea matInput type="text" class="contact-form__input" [ngModel]="description" name="description" required></textarea>
+  </mat-form-field>
+
+  <button type="submit" mat-raised-button color="warn">Submit</button>
+</form>

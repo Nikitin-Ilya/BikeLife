@@ -21,6 +21,7 @@ import { NgxImageZoomModule } from 'ngx-image-zoom';
 import {MatSelectModule} from '@angular/material/select';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {MatInputModule} from '@angular/material/input';
+import {MatButtonModule} from '@angular/material/button';
 import { ContactFormComponent } from './contact/contact-form/contact-form.component';
 
 @NgModule({
@@ -49,6 +50,7 @@ import { ContactFormComponent } from './contact/contact-form/contact-form.compon
     FormsModule,
     ReactiveFormsModule,
     MatInputModule,
+    MatButtonModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
