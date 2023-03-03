@@ -1,0 +1,20 @@
+mat-list-option{
+  padding: 20px 0;
+
+  &:not(:last-child){
+    border-bottom: 1px solid #757575;
+  }
+}
+
+.product {
+  display: flex;
+
+  .product__image {
+    .product__img {
+      max-height: 100px;
+    }
+  }
+  .product__info {
+    margin-left: 20px;
+  }
+}

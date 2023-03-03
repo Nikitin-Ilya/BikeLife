@@ -1,1 +1,23 @@
-<p>cart works!</p>
+<div [formGroup]="cartFormGroup">
+	<mat-selection-list #shoes formControlName="products">
+    <mat-list-option *ngFor="let item of cartData" [value]="item" style="height: 150px">
+      <div class="product">
+        <div class="product__image">
+          <img class="product__img" *ngIf="item.imgUrl.length>1" src="{{item.imgUrl[0]}}" alt="Error!">
+          <img class="product__img" *ngIf="item.imgUrl.length==1" src="{{item.imgUrl}}" alt="Error!">
+        </div>
+        <div class="product__info">
+          <p>{{ item.name }}</p>
+          <p>{{ (item.description.length>100)? (item.description | slice:0:100)+'...':(item.description) }}</p>
+        </div>
+      </div>
+    </mat-list-option>
+  </mat-selection-list>
+  <p>Bikes selected: {{ shoes.selectedOptions.selected.length }}</p>
+  <div class="alert alert-danger"
+    *ngIf="cartFormGroup.controls['products'].invalid && cartFormGroup.controls['products'].touched">
+    Select field
+  </div>
+</div>
+
+
