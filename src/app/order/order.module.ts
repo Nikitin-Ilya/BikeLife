@@ -18,12 +18,14 @@ import {MatRadioModule} from '@angular/material/radio';
 
 import { OrderComponent } from './order.component';
 import { CartComponent } from './cart/cart.component';
+import { OrderAcceptedComponent } from './order-accepted/order-accepted.component';
 
 
 @NgModule({
   declarations: [
     OrderComponent,
     CartComponent,
+    OrderAcceptedComponent,
   ],
   imports: [
     CommonModule,

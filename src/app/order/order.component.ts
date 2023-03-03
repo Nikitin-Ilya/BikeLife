@@ -1,12 +1,13 @@
-import {Component, OnInit} from '@angular/core';
-import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
+import {Component} from '@angular/core';
+import {FormControl, FormGroup, Validators} from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-order',
   templateUrl: './order.component.html',
   styleUrls: ['./order.component.scss']
 })
-export class OrderComponent implements OnInit {
+export class OrderComponent {
 
   cartFormGroup: FormGroup = new FormGroup({});
 
@@ -24,11 +25,9 @@ export class OrderComponent implements OnInit {
   });
   deliveryDate: Date = new Date();
 
-  constructor(private _formBuilder: FormBuilder) {}
-
-  ngOnInit() {
-
-  }
+  constructor(
+    private router: Router,
+  ) {}
 
   isDatePickerEnabled():void {
     switch(this.deliveryDateFormGroup.get('deliveryDateRadio')?.value) {
@@ -58,7 +57,7 @@ export class OrderComponent implements OnInit {
   }
 
   createNewOrder():void{
-
+    this.router.navigate(['order/order-accepted']);
   }
 
 }

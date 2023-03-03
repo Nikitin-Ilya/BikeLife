@@ -1,0 +1,24 @@
+.wrapper{
+  height: 80%;
+  display: flex;
+  align-items: center;
+}
+
+.container{
+  text-align: center;
+}
+
+.title{
+  font-size: 40px;
+  font-weight: 600;
+}
+
+.desc{
+  font-size: 20px;
+  margin: 30px 0 30px 0;
+}
+
+button{
+  font-size: 20px;
+  padding: 30px 50px;
+}
