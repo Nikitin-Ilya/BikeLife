@@ -39,15 +39,8 @@ export class ProductDetailsComponent implements OnInit {
     this.subscription = this.productService.getProduct(productId)
       .subscribe(response=> {
         this.product = response!;
-        console.log(response.imgUrl.length);
-        if(response.imgUrl.length>1){
-          this.myThumbnail=response!.imgUrl[0];
-          this.fullImage=response!.imgUrl[0];
-        }
-        else{
-          this.myThumbnail=response!.imgUrl;
-          this.fullImage=response!.imgUrl;
-        }
+        this.myThumbnail=response!.imgUrl[0];
+        this.fullImage=response!.imgUrl[0];
       })
 
   }

@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { OnInit } from '@angular/core';
-import { Subscription } from 'rxjs';
+import { Subscription, Observable } from 'rxjs';
 import { DataService, IProduct } from '../../services/data.service';
 
 @Component({
@@ -15,7 +15,7 @@ export class ProductsListComponent  implements OnInit{
   constructor(private dataService: DataService){}
 
   ngOnInit(): void {
-    this.subscription = this.dataService.getProducts().subscribe(response=> {
+    this.subscription = this.dataService.getProductsFromDB().subscribe(response => {
       this.products=response.sort((el, nextEl) => {
         if (el.discount > nextEl.discount) {
           return -1;
@@ -29,10 +29,6 @@ export class ProductsListComponent  implements OnInit{
   }
 
   ngOnDestroy() {
-    this.subscription.unsubscribe();
-  }
-
-  onBack(): void {
     this.subscription.unsubscribe();
   }
 }

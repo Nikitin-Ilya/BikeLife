@@ -1,5 +1,4 @@
 <div class="products-list">
-
   <div class="item" *ngFor="let item of products"
     [ngClass]="{'red-item': item.discount! >= 70,
               'orange-item': item.discount! >= 50 && item.discount! < 70,
@@ -15,8 +14,7 @@
       </div>
 
       <div class="item__image">
-        <img class="item__img" *ngIf="item.imgUrl.length>1" src="{{item.imgUrl[0]}}" alt="Error!">
-        <img class="item__img" *ngIf="item.imgUrl.length==1" src="{{item.imgUrl}}" alt="Error!">
+        <img class="item__img" src="{{item.imgUrl[0]}}" alt="Error!">
       </div>
 
       <div class="item__container price-shop">
