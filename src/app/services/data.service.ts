@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable, map } from 'rxjs';
+import { Observable, map, from } from 'rxjs';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 
 interface IReview {
@@ -10,7 +10,7 @@ interface IReview {
 }
 
 export interface IProduct {
-  id: number;
+  id?: string;
   name: string;
   imgUrl: string[];
   price: number;
@@ -39,11 +39,25 @@ export class DataService {
 
   getProduct(id: number):Observable<IProduct>{
     return this.http.get<IProduct[]>('../../assets/data.json')
-      .pipe(map(products => products.find((r) => r.id == id)!));
+      .pipe(map(products => products.find((r) => r.id == id.toString())!));
   }
 
   getProductsFromDB():Observable<IProduct[]>{
-    return <Observable<IProduct[]>> this.db.collection('products').valueChanges();
+    return this.db.collection('products').snapshotChanges()
+      .pipe(
+        map(actions => {
+          return actions.map(a => {
+            let data = a.payload.doc.data() as IProduct;
+            data.id = a.payload.doc.id;
+            return data;
+          });
+        })
+      );
+  }
+
+  getProductFromDB(id: number):Observable<IProduct>{
+    return this.getProductsFromDB()
+      .pipe(map(products => products.find((r) => r.id == id.toString())!));
   }
 
   addNewProduct(product: IProduct){

@@ -4,9 +4,11 @@ import {FormControl} from '@angular/forms';
 import {MatAutocompleteSelectedEvent} from '@angular/material/autocomplete';
 import {MatChipInputEvent} from '@angular/material/chips';
 import {Observable} from 'rxjs';
-import {map, startWith} from 'rxjs/operators';
+import {map, startWith, finalize} from 'rxjs/operators';
 import { FormGroup, Validators} from '@angular/forms';
 import {IProduct} from '../services/data.service';
+import { AngularFireStorage } from "@angular/fire/compat/storage";
+import { DataService } from '../services/data.service';
 
 @Component({
   selector: 'app-add-new-product',
@@ -37,12 +39,13 @@ export class AddNewProductComponent {
   defaultColors: string[] = ['Red', 'Green', 'Blue', 'Yellow', 'Orange', 'Black', 'White', 'Pink'];
   availableSizes: string[] = ['XXS', 'XS', 'S', 'M', 'L', 'XL', 'XXL'];
   uploadedFiles: File[] = [];
-
+  uploadProgress$!: Observable<number | undefined>;
+  fileURL!: string;
   @ViewChild('colorInput') colorInput!: ElementRef<HTMLInputElement>;
 
   previewWidth: number = 250;
 
-  constructor() {
+  constructor(private storage: AngularFireStorage, private dataService: DataService) {
     this.filteredselectedColors = this.colorCtrl.valueChanges.pipe(
       startWith(null),
       map((color: string | null) => (color ? this._filter(color) : this.defaultColors.slice())),
@@ -96,6 +99,57 @@ export class AddNewProductComponent {
   }
 
   onSubmit():void {
+    this.product = {
+      name: this.productForm.get('name')?.value,
+      imgUrl: [this.fileURL],
+      price: this.productForm.get('price')?.value,
+      shop: this.productForm.get('shop')?.value,
+      discount: this.productForm.get('discount')?.value,
+      main: this.productForm.get('main')?.value,
+      description: this.productForm.get('description')?.value,
+      shipping: this.productForm.get('shipping')?.value ? "Free Shipping": "",
+      new: this.productForm.get('new')?.value,
+      discountUntil: this.productForm.get('discountUntil')?.value,
+      color:this.selectedColors,
+      size:this.productForm.get('size')?.value,
+      review: [],
+    }
+    this.dataService.addNewProduct(this.product);
+
     alert('New product added successfully')
   }
+
+  selectedFile!: File;
+  fb!: any;
+  downloadURL!: Observable<string>;
+
+  onFileSelected(event: any) {
+    var n = Date.now();
+    const file = event.files[0];
+    const filePath = `productsImages/${n}`;
+    const fileRef = this.storage.ref(filePath);
+    const task = this.storage.upload(`productsImages/${n}`, file);
+    this.uploadProgress$ = task.percentageChanges();
+
+    task.snapshotChanges()
+      .pipe(
+        finalize(() => {
+          this.downloadURL = fileRef.getDownloadURL();
+          this.downloadURL.subscribe(url => {
+            if (url) {
+              this.fb = url;
+            }
+            console.log("URL:", this.fb);
+            this.fileURL = this.fb;
+          });
+        })
+      )
+      .subscribe(url => {
+        if (url) {
+          console.log(url);
+        }
+      });
+  }
+
+
 }

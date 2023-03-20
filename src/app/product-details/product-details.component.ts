@@ -1,11 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
-import { DOCUMENT } from '@angular/common';
-import { Inject } from '@angular/core';
 import { DataService, IProduct } from '../services/data.service';
 import { NgbRatingConfig, } from '@ng-bootstrap/ng-bootstrap';
 import {FormControl, Validators, FormBuilder} from '@angular/forms';
+import { AngularFirestore } from '@angular/fire/compat/firestore';
 
 @Component({
   selector: 'app-product-details',
@@ -30,13 +29,13 @@ export class ProductDetailsComponent implements OnInit {
     quantity: ['', [Validators.required]]
   });
 
-  constructor( private route: ActivatedRoute, private formBuilder: FormBuilder, private productService: DataService, ratingConfig: NgbRatingConfig, @Inject(DOCUMENT) private document: Document) {
+  constructor( private route: ActivatedRoute, private formBuilder: FormBuilder, private productService: DataService, ratingConfig: NgbRatingConfig, private db: AngularFirestore) {
 		ratingConfig.max = 5;
   }
 
   ngOnInit(): void {
-    const productId = parseInt(this.route.snapshot.params['id']);
-    this.subscription = this.productService.getProduct(productId)
+    const productId = this.route.snapshot.params['id'];
+    this.subscription = this.productService.getProductFromDB(productId)
       .subscribe(response=> {
         this.product = response!;
         this.myThumbnail=response!.imgUrl[0];
@@ -49,16 +48,17 @@ export class ProductDetailsComponent implements OnInit {
     this.subscription.unsubscribe();
   }
 
-  onBack(): void {
-    this.subscription.unsubscribe();
-  }
-
   public get rating() {
-    const arr = this.product.review.map(review=>{
-      return review.rating
-    })
-    const sum = arr.reduce((acc,el)=>(acc+=el),0)
-    return sum/arr.length
+    if (this.product.review){
+      const arr = this.product.review.map(review=>{
+        return review.rating
+      })
+      const sum = arr.reduce((acc,el)=>(acc+=el),0)
+      return sum/arr.length
+    }
+    else{
+      return 0
+    }
   }
 
   changeImage(image: string): void{
@@ -67,7 +67,7 @@ export class ProductDetailsComponent implements OnInit {
   }
 
   onSubmit(): void {
-    if(this.colorFormControl.value && this.sizeFormControl.value && this.count >=1 && this.count <= 10){
+    if(this.colorFormControl.value && this.sizeFormControl.value && this.checkoutForm.get(['quantity'])?.value >=1 && this.checkoutForm.get(['quantity'])?.value <= 10){
       alert('Added to cart');
     }
   }

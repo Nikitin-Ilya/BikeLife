@@ -18,8 +18,6 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
 import {FileUploadModule} from 'primeng/fileupload';
 import {HttpClientModule} from '@angular/common/http';
 
-
-
 @NgModule({
   declarations: [
     AddNewProductComponent
