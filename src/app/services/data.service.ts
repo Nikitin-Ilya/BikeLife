@@ -55,6 +55,18 @@ export class DataService {
       );
   }
 
+  getProductsReviewsFromDB(docId: any):Observable<IReview[]>{
+    return this.db.collection('products').doc(docId).collection("review").snapshotChanges()
+      .pipe(
+        map(actions => {
+          return actions.map(a => {
+            let data = a.payload.doc.data() as IReview;
+            return data;
+          });
+        })
+      );
+  }
+
   getProductFromDB(id: number):Observable<IProduct>{
     return this.getProductsFromDB()
       .pipe(map(products => products.find((r) => r.id == id.toString())!));

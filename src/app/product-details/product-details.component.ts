@@ -42,6 +42,12 @@ export class ProductDetailsComponent implements OnInit {
         this.fullImage=response!.imgUrl[0];
       })
 
+    this.subscription = this.productService.getProductsReviewsFromDB(productId)
+      .subscribe(response=> {
+        this.product.review = response;
+        console.log("res", response);
+      })
+
   }
 
   ngOnDestroy() {
