@@ -9,6 +9,7 @@ import { FormGroup, Validators} from '@angular/forms';
 import {IProduct} from '../services/data.service';
 import { AngularFireStorage } from "@angular/fire/compat/storage";
 import { DataService } from '../services/data.service';
+import { FileUpload } from 'primeng/fileupload';
 
 @Component({
   selector: 'app-add-new-product',
@@ -39,9 +40,10 @@ export class AddNewProductComponent {
   defaultColors: string[] = ['Red', 'Green', 'Blue', 'Yellow', 'Orange', 'Black', 'White', 'Pink'];
   availableSizes: string[] = ['XXS', 'XS', 'S', 'M', 'L', 'XL', 'XXL'];
   uploadedFiles: File[] = [];
-  uploadProgress$!: Observable<number | undefined>;
+  uploadProgress$!: any;
   fileURL!: string;
   @ViewChild('colorInput') colorInput!: ElementRef<HTMLInputElement>;
+  @ViewChild('fileuploader') fileuploader!: FileUpload;
 
   previewWidth: number = 250;
 
@@ -129,7 +131,10 @@ export class AddNewProductComponent {
     const filePath = `productsImages/${n}`;
     const fileRef = this.storage.ref(filePath);
     const task = this.storage.upload(`productsImages/${n}`, file);
-    this.uploadProgress$ = task.percentageChanges();
+    task.percentageChanges().subscribe(perc => {
+      console.log(perc)
+      this.fileuploader.onProgress.emit(perc);
+    });
 
     task.snapshotChanges()
       .pipe(
@@ -151,5 +156,8 @@ export class AddNewProductComponent {
       });
   }
 
+  progressReport($event: any) {
+    this.fileuploader.progress = $event;
+  }
 
 }

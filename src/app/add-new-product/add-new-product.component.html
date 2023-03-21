@@ -70,7 +70,7 @@
       </mat-autocomplete>
     </mat-form-field>
 
-    <p-fileUpload [customUpload]="true" (uploadHandler)="onFileSelected($event)" accept="image/*" [previewWidth]=previewWidth></p-fileUpload>
+    <p-fileUpload #fileuploader [customUpload]="true" (uploadHandler)="onFileSelected($event)" (onProgress)="progressReport($event)" accept="image/*" [previewWidth]=previewWidth></p-fileUpload>
 
     <section class="optional">
       <mat-checkbox color="primary" formControlName="new">New</mat-checkbox>
