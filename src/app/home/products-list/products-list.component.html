@@ -4,7 +4,20 @@
               'orange-item': item.discount! >= 50 && item.discount! < 70,
               'yellow-item': item.discount! > 0 && item.discount! < 50,
               'main-item': item.main}"
-    [routerLink]="['product/' + item?.id]">
+    [routerLink]="['product/' + item?.id]"
+    [cdkContextMenuTriggerFor]="manange">
+
+    <!--------------context menu for admin---------------->
+    <ng-template #manange>
+      <div class="manage" cdkMenu>
+        <button class="manage__item" [routerLink]="['product/edit/' + item?.id]" cdkMenuItem>
+          <i class="fa-solid fa-pen-to-square"></i>Edit
+        </button>
+        <button class="manage__item" (click)="deleteProduct(item)" cdkMenuItem>
+          <i class="fa-solid fa-trash"></i>Delete
+        </button>
+      </div>
+    </ng-template>
 
     <!--------------Fist/main product---------------->
     <div class="item__main" *ngIf="item.main">

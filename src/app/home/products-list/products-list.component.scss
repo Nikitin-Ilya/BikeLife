@@ -25,6 +25,7 @@ hr{
 }
 
 .item{
+  position: relative;
   height: 100%;
   color: $gray-text;
   border: 1px solid $gray-text;
@@ -39,6 +40,38 @@ hr{
   .item__container{
     display: flex;
     justify-content: space-between;
+  }
+}
+
+.manage{
+  display: inline-flex;
+  flex-direction: column;
+  min-width: 180px;
+  max-width: 280px;
+  background-color: rgb(243, 243, 243);
+  padding: 6px 0;
+  box-shadow: 0px 0px 5px rgb(150, 150, 150);
+
+  .manage__item{
+    background-color: transparent;
+    cursor: pointer;
+    border: none;
+
+    user-select: none;
+    min-width: 64px;
+    line-height: 36px;
+    padding: 0 16px;
+
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    flex: 1;
+    &:hover{
+      background-color: rgb(208, 208, 208);
+    }
+    &:active{
+      background-color: rgb(170, 170, 170);
+    }
   }
 }
 

@@ -1,0 +1,91 @@
+<div class="container">
+  <h1 class="title">Add new product </h1>
+
+  <form [formGroup]="productForm" (ngSubmit)="onSubmit()">
+
+    <div class="form-row">
+      <mat-form-field appearance="fill">
+        <mat-label>Name</mat-label>
+        <input matInput formControlName="name" placeholder="Enter product name">
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Shop</mat-label>
+        <input matInput formControlName="shop" placeholder="Enter product shop">
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Price</mat-label>
+        <input matInput formControlName="price" placeholder="Enter product price">
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Discount</mat-label>
+        <input matInput formControlName="discount" placeholder="Enter product discount">
+      </mat-form-field>
+
+      <mat-form-field class="example-full-width" appearance="fill">
+        <mat-label>Discount until</mat-label>
+        <input matInput [matDatepickerFilter]="datePickerFilter" [matDatepicker]="picker" formControlName="discountUntil">
+        <mat-hint>MM/DD/YYYY</mat-hint>
+        <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+    </div>
+
+    <div class="form-row">
+      <mat-form-field class="description" appearance="fill">
+        <mat-label>Description</mat-label>
+        <textarea matInput formControlName="description" placeholder="Product description"></textarea>
+      </mat-form-field>
+    </div>
+
+    <div class="size" [ngClass]="{'invalid': productForm.get('size')?.invalid && !productForm.get('size')?.pristine}">
+      <label>Size*</label>
+      <mat-chip-listbox formControlName="size" aria-label="Size selection" selectable multiple>
+        <mat-chip-option *ngFor="let size of availableSizes">
+          {{size}}
+        </mat-chip-option>
+      </mat-chip-listbox>
+    </div>
+
+    <mat-form-field class="color" appearance="fill">
+      <mat-label>Choose colors</mat-label>
+      <mat-chip-grid #chipGrid aria-label="Color selection" formControlName="colors">
+        <mat-chip-row *ngFor="let color of selectedColors" (removed)="remove(color)">
+          {{color}}
+          <button matChipRemove [attr.aria-label]="'remove ' + color">
+            <mat-icon>cancel</mat-icon>
+          </button>
+        </mat-chip-row>
+        <input placeholder="New color..." #colorInput [formControl]="colorCtrl"
+        [matChipInputFor]="chipGrid" [matAutocomplete]="auto"
+        [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+        (matChipInputTokenEnd)="add($event)"/>
+      </mat-chip-grid>
+      <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">
+        <mat-option *ngFor="let color of filteredselectedColors | async" [value]="color">
+          {{color}}
+        </mat-option>
+      </mat-autocomplete>
+    </mat-form-field>
+
+    <p-fileUpload #fileuploader [customUpload]="true"
+      (uploadHandler)="onFileSelected($event)"
+      (onProgress)="progressReport($event); productForm.get('image')?.setValue('done')"
+      (onClear)="productForm.get('image')?.setValue(null)"
+      (onRemove)="productForm.get('image')?.setValue(fileuploader.files.length >= 1 ? 'done' : null)"
+      accept="image/*"
+      [previewWidth]=previewWidth>
+    </p-fileUpload>
+
+    <section class="optional">
+      <mat-checkbox color="primary" formControlName="new">New</mat-checkbox>
+      <mat-checkbox color="primary" formControlName="shipping">Free Shipping</mat-checkbox>
+      <mat-checkbox color="primary" formControlName="main">Main</mat-checkbox>
+    </section>
+
+    <button mat-raised-button type="submit" [disabled]="productForm.invalid">Submit</button>
+
+  </form>
+</div>

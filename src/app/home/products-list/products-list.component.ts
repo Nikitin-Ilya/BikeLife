@@ -31,4 +31,11 @@ export class ProductsListComponent  implements OnInit{
   ngOnDestroy() {
     this.subscription.unsubscribe();
   }
+
+  deleteProduct(item: IProduct): void{
+    let isDelete = confirm("Are you sure you want to remove the product named: " + item.name + ". Data recovery will be impossible");
+    if (isDelete && item.id){
+      this.dataService.deleteProduct(item.id);
+    }
+  }
 }

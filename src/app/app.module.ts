@@ -23,6 +23,7 @@ import {MatSelectModule} from '@angular/material/select';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {MatInputModule} from '@angular/material/input';
 import {MatButtonModule} from '@angular/material/button';
+import {CdkMenuModule} from '@angular/cdk/menu';
 
 import { AngularFireModule } from '@angular/fire/compat';
 import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
@@ -57,6 +58,7 @@ import { environment } from '../environments/environment';
     MatButtonModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFirestoreModule,
+    CdkMenuModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

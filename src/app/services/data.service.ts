@@ -91,5 +91,28 @@ export class DataService {
     });
   }
 
+  editProduct(product: IProduct, id: string){
+    this.db.collection("products").doc(id)
+    .update({
+      name: product.name,
+      imgUrl: product.imgUrl,
+      price: product.price,
+      shop: product.shop,
+      discount: product.discount,
+      main: product.main,
+      description: product.description,
+      shipping: product.shipping,
+      new: product.new,
+      discountUntil: product.discountUntil,
+      color: product.color,
+      size: product.size,
+      review: null,
+    });
+  }
+
+  deleteProduct(id: string){
+    this.db.collection("products").doc(id).delete();
+  }
+
 
 }
