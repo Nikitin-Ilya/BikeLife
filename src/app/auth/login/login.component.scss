@@ -1,0 +1,19 @@
+.auth-form{
+  display: flex;
+  flex-direction: column;
+}
+
+.logo{
+  max-width: 20px;
+}
+
+.login-with{
+  margin-top: 20px;
+  padding: 7px;
+  background-color: #fff;
+  border: 1px solid grey;
+  width: 100%;
+  &:hover{
+    background-color: #f2f2f2;
+  }
+}

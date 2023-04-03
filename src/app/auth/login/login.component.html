@@ -1,0 +1,17 @@
+<form class="auth-form" [formGroup]="signInForm" (ngSubmit)="signIn()">
+  <mat-form-field appearance="fill">
+    <mat-label>Email</mat-label>
+    <input matInput formControlName="email" placeholder="Enter your email">
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Password</mat-label>
+    <input matInput formControlName="password" type="password" placeholder="Enter your password">
+  </mat-form-field>
+
+  <button mat-raised-button color="primary" type="submit" [disabled]="this.signInForm.invalid">Sign in</button>
+</form>
+<button class="login-with" (click)="authService.loginWithGoogle()">
+  <img class="logo" src="../../../assets/img/google.svg" alt="image">
+  Google
+</button>
