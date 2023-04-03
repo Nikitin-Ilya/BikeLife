@@ -19,13 +19,12 @@ export class RoleGuard implements CanActivate {
   checkUserRole(route: ActivatedRouteSnapshot){
     if (this.authService.isLoggedIn) {
 
-      const userRole = this.authService.getRole;
+      const userRole = this.authService.getRole();
       if (route.data['roles'] && route.data['roles'].indexOf(userRole) === -1) {
         return false;
       }
       return true;
     }
-
     return false;
   }
 

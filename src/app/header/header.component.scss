@@ -69,7 +69,7 @@ html, body{
     }
 
     .header__auth-button{
-      border-radius:20px 0 0 20px;
+      border-radius: 20px;
       padding: 5px 10px;
       transition: all 0.2s ease-out;
       &:hover{
@@ -78,23 +78,11 @@ html, body{
     }
 
     .signin{
-      padding-right: 20px;
       color: $white;
       background: $blue;
       border: 2px $blue solid;
       &:hover{
         color: $blue;
-      }
-    }
-
-    .signup{
-      margin-left: -15px;
-      color: $white;
-      background: $red;
-      border-radius: 20px;
-      border: 2px $red solid;
-      &:hover{
-        color: $red;
       }
     }
   }
